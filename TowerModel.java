@@ -1,3 +1,5 @@
+import javax.print.attribute.standard.Destination;
+
 public class TowerModel {
 
     // 2d array storing game state
@@ -46,8 +48,13 @@ public class TowerModel {
     // Move one disk from the source stack to the destination stack.
     public void move(int source, int destination)
     {
-        System.out.println("Move #" + ++moveCounter + " from " + source + " to " + destination);
-        // TODO!!
+        if(towers[source].peek() != 0){  
+            if(towers[destination].peek() == 0 ||  towers[destination].peek() > towers[source].peek() ){
+               System.out.println("Move #" + ++moveCounter + " moved "+ towers[source].peek() + " from " + source + " to " + destination);
+               System.out.println("moving " + towers[source].peek() + " from " + source + " to " + destination);
+                towers[destination].push(towers[source].pop());
+            }
+        }
     }
 
     // Helper method to nicely print the current model state.
